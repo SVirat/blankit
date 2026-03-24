@@ -1,7 +1,4 @@
-# Blankit <img width="32" height="32" alt="icon48" src="https://github.com/user-attachments/assets/41c38a04-4163-4028-8805-191b6993270e" />
-
-
-**Real-time, local-first PII redaction for AI interactions.**
+# Blankit <img width="30" height="30" alt="icon48" src="https://github.com/user-attachments/assets/486dd006-5cc9-4c75-bf4b-c36bd8887f9d" />
 
 Blankit is a Chrome extension that automatically scrubs sensitive personal information (names, SSNs, emails, phone numbers, medical records, credit cards, etc.) from your prompts and uploaded documents before they reach ChatGPT, Claude, or Gemini. All processing happens entirely in your browser, nothing leaves your device.
 
@@ -64,9 +61,6 @@ The audit log stores only metadata — never the original PII values or document
 ## Pricing
 
 Blankit is **completely free**. All features, including document redaction, are unlimited with no paywalls or usage caps.
-
-![Recording 2026-03-17 132151](https://github.com/user-attachments/assets/8218eab0-e907-4b19-9a83-add84ec036bb)
-
 
 ## Project Structure
 
