@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blankit</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title"><img src="icons/icon48.png" width="22" height="22" alt="Blankit" style="vertical-align: middle; margin-right: 4px;"> Blankit</div>
+        <div class="header-subtitle">Local PII/PHI Redaction</div>
+    </div>
+
+    <!-- Master Toggle -->
+    <div class="toggle-section">
+        <span class="toggle-label">Protection Active</span>
+        <label class="switch">
+            <input type="checkbox" id="master-toggle" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Deep Sleep Toggle -->
+    <div class="toggle-section deep-sleep-section">
+        <div class="deep-sleep-left">
+            <span class="toggle-label">Deep Sleep</span>
+            <div class="deep-sleep-hint">Hides the floating badge and eye toggle on the page</div>
+        </div>
+        <label class="switch">
+            <input type="checkbox" id="deep-sleep-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-value" id="total-count">0</div>
+            <div class="stat-label">Total Protected</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="session-count">0</div>
+            <div class="stat-label">This Session</div>
+        </div>
+    </div>
+
+    <!-- Custom Words -->
+    <div class="custom-words-section">
+        <div class="section-title">Custom Redactions</div>
+        <div id="custom-words-list"></div>
+        <button id="btn-add-word" class="btn-add-word">
+            <span class="btn-add-icon">+</span> Add word
+        </button>
+        <button id="btn-remove-all-words" class="btn-remove-all" style="display: none;">Remove all</button>
+        <div class="cw-share-row">
+            <button id="btn-share-words" class="btn-cw-action" title="Share your custom redaction set">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                Share Set
+            </button>
+            <button id="btn-import-words" class="btn-cw-action" title="Import a shared redaction set">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Import Set
+            </button>
+        </div>
+        <input type="file" id="import-words-file" accept=".json" style="display:none;">
+        <div id="cw-share-toast" class="cw-share-toast" style="display:none;"></div>
+    </div>
+
+    <!-- Detection Categories -->
+    <div class="categories-section">
+        <div class="section-title">Detection Categories</div>
+        <div class="category-list">
+            <label class="category-item">
+                <input type="checkbox" data-category="emails" checked>
+                <span class="checkmark"></span>
+                <span>Email Addresses</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="phones" checked>
+                <span class="checkmark"></span>
+                <span>Phone Numbers</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="ssn" checked>
+                <span class="checkmark"></span>
+                <span>SSN / Tax IDs</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="creditCards" checked>
+                <span class="checkmark"></span>
+                <span>Credit Card Numbers</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="addresses" checked>
+                <span class="checkmark"></span>
+                <span>Street Addresses</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="names" checked>
+                <span class="checkmark"></span>
+                <span>Person Names</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="dates" checked>
+                <span class="checkmark"></span>
+                <span>Dates of Birth</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="medical" checked>
+                <span class="checkmark"></span>
+                <span>Medical Record #s</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="ip" checked>
+                <span class="checkmark"></span>
+                <span>IP Addresses</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="passport" checked>
+                <span class="checkmark"></span>
+                <span>Passport Numbers</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="driversLicense" checked>
+                <span class="checkmark"></span>
+                <span>Driver's License #s</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="taxId" checked>
+                <span class="checkmark"></span>
+                <span>Tax IDs (TIN/EIN)</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="bankAccount" checked>
+                <span class="checkmark"></span>
+                <span>Bank / IBAN / SWIFT</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="macAddress" checked>
+                <span class="checkmark"></span>
+                <span>MAC Addresses</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="urls" checked>
+                <span class="checkmark"></span>
+                <span>Web URLs</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="credentials" checked>
+                <span class="checkmark"></span>
+                <span>Passwords / API Keys</span>
+            </label>
+            <label class="category-item">
+                <input type="checkbox" data-category="uuid" checked>
+                <span class="checkmark"></span>
+                <span>UUIDs / GUIDs</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+        <button id="btn-clear" class="btn btn-danger">Clear Session</button>
+        <button id="btn-audit" class="btn btn-secondary">Audit Log</button>
+    </div>
+
+    <!-- Audit Log Panel -->
+    <div id="audit-panel" class="audit-panel" style="display: none;">
+        <div class="audit-header">
+            <span class="section-title" style="margin-bottom: 0;">AUDIT LOG</span>
+            <div class="audit-actions">
+                <button id="btn-export-audit" class="btn-audit-action">Export PDF</button>
+                <button id="btn-clear-audit" class="btn-audit-action">Clear</button>
+                <button id="btn-close-audit" class="btn-audit-action">✕</button>
+            </div>
+        </div>
+        <div id="audit-entries" class="audit-entries">
+            <div class="audit-empty">No redaction events logged yet.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        All processing is 100% local. No data leaves your browser.
+    </div>
+
+    <!-- Share & Rate -->
+    <div class="share-rate-section">
+        <span class="share-rate-text">Enjoying Blankit?</span>
+        <button id="btn-share-ext" class="btn-share-rate" title="Share Blankit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+        </button>
+        <a href="https://chromewebstore.google.com/detail/crossout/oihdkggpbopimdndhephiechoegagoeb" target="_blank" rel="noopener noreferrer" class="btn-share-rate">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Rate us
+        </a>
+    </div>
+
+    <script src="lib/pdf-report.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

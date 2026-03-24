@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "Blankit",
+  "version": "1.0.2",
+  "description": "Real-time, local-first PII redaction for AI chats. All processing stays in your browser.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": [
+        "lib/jszip-pre.js",
+        "lib/jszip.min.js",
+        "lib/jszip-post.js",
+        "lib/compromise.min.js",
+        "src/core/pii-engine.js",
+        "src/core/doc-handlers.js",
+        "src/platforms/chatgpt/selectors.js",
+        "src/platforms/claude/selectors.js",
+        "src/platforms/gemini/selectors.js",
+        "src/core/network-base.js",
+        "src/platforms/chatgpt/interceptor.js",
+        "src/platforms/claude/interceptor.js",
+        "src/platforms/gemini/interceptor.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": ["src/content/bridge.js"],
+      "css": ["src/content/styles.css"],
+      "run_at": "document_idle",
+      "world": "ISOLATED"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Blankit — PII/PHI Protection",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png",
+      "256": "icons/icon256.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+    "256": "icons/icon256.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/icon48.png"],
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "blankit-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unit and regression tests for Blankit extension",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "compromise": "^14.15.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
