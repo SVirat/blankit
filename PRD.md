@@ -1,7 +1,7 @@
 # Blankit <img width="30" height="30" alt="icon48" src="https://github.com/user-attachments/assets/5e77145a-1ca4-49de-8ddf-54accbd1916d" /> : Product Requirements Document (PRD)
 
-**Version:** 1.0.2  
-**Last Updated:** March 24, 2026  
+**Version:** 1.0.4  
+**Last Updated:** April 16, 2026  
 **Status:** 🟢 [Live](https://chromewebstore.google.com/detail/crossout/oihdkggpbopimdndhephiechoegagoeb)<br>
 **Platform:** Google Chrome Extension 
 

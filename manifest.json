@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Blankit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Real-time, local-first PII redaction for AI chats. All processing stays in your browser.",
   "permissions": ["storage"],
   "host_permissions": [
