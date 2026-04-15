@@ -50,16 +50,6 @@ Or if you want to test locally,
 4. Click **Load unpacked** and select the project folder
 5. Navigate to ChatGPT, Claude, or Gemini — Blankit activates automatically
 
-## Publishing to Chrome Web Store
-
-Before zipping the extension for upload, remove the following files and folders that are not needed at runtime:
-
-- `tests/` — test suite and dev dependencies
-- `PRD.md` — product spec
-- `LICENSE.md` — license file
-
-This reduces the package size for the Chrome Web Store.
-
 ## How It Works
 
 Blankit operates at two levels:
